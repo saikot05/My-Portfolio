@@ -5,187 +5,210 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Md Saikot Islam Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="styles/portfolio.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        .fade-in.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 
-<body class="font-open-sans">
-    <header>
-        <nav>
-            <div class="logo">
-                <h2>Sai<span class="color-orange">k</span>ot</h2>
-            </div>
-            <ul class="menu">
-                <li><a href="">Portfolio</a></li>
+<body class="bg-black text-gray-200 font-sans">
+
+    <header class="bg-gray-900 shadow-md sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center p-4">
+            <h2 class="text-2xl font-bold text-purple-500">Sai<span class="text-gray-200">kot</span></h2>
+            <ul class="flex space-x-6 items-center">
+                <li><a href="#banner" class="hover:text-purple-400 transition">Portfolio</a></li>
+                <li><a href="#skills" class="hover:text-purple-400 transition">Skills</a></li>
+                <li><a href="#resume" class="hover:text-purple-400 transition">Resume</a></li>
                 <li>
-                    <a href="">Blog</a>
+                    <button class="bg-gradient-to-r from-purple-600 to-purple-400 text-white px-4 py-2 rounded-lg shadow-lg hover:scale-110 transition transform animate-pulse">Hire me</button>
                 </li>
-                <li><button class="btn">Hire me</button></li>
-
             </ul>
-        </nav>
-        <section id="banner">
-            <div class="banner-content">
-                <h2>Hi, I am</h2>
-                <h1>Md Saikot Islam</h1>
-                <p>Shot what able cold new see hold.Friendly as an betrayed formerly he. Morning because as to society behaved moments.</p>
-                <div class="btn-group">
-                    <button class="btn"><i class="fa-solid fa-download"></i> Download CV</button>
-                    <button class="btn"><i class="fa-solid fa-phone"></i> Contact</button>
-                </div>
-            </div>
-            <div class="banner-image">
-                <img src="images/saikot1.png" alt="">
-            </div>
-        </section>
+        </div>
     </header>
-    <section id="about">
-        <div class="about-container">
-            <div class="section-heading">
-                <h2>About me</h2>
-                <p>I am a Computer Science and Engineering student with a strong interest in web development. I focus on building clean, responsive, and user-friendly web interfaces while continuously improving my skills in modern web technologies. I am
-                    passionate about learning, problem-solving, and growing as a future software developer.</p>
-            </div>
-            <div class="about-info">
-                <div class="info-card">
-                    <p>Name:</p>
-                    <h4>Saikot Islam</h4>
-                </div>
-                <div class="info-card">
-                    <p>Email:</p>
-                    <h4>saikot08@gmail.com</h4>
-                </div>
-                <div class="info-card">
-                    <p>Date of birth:</p>
-                    <h4>5 September 2005</h4>
-                </div>
-                <div class="info-card">
-                    <p>From:</p>
-                    <h4>Naogaon,Bangladesh</h4>
-                </div>
 
+    <section id="banner" class="container mx-auto flex flex-col md:flex-row items-center justify-between my-12 px-4 fade-in">
+        <div class="md:w-1/2 space-y-4 text-center md:text-left">
+            <h2 class="text-lg text-gray-400">Hi, I am</h2>
+            <h1 class="text-4xl md:text-5xl font-bold text-white">Md Saikot Islam</h1>
+            <p class="text-gray-300">I build clean, responsive, and user-friendly web interfaces. Passionate about learning, problem-solving, and web development.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start mt-4">
+                <button class="bg-gradient-to-r from-purple-600 to-purple-400 text-white px-6 py-3 rounded-lg shadow-lg hover:scale-110 transition transform animate-pulse flex items-center gap-2"><i class="fa-solid fa-download"></i> Download CV</button>
+                <button class="bg-gradient-to-r from-purple-600 to-purple-400 text-white px-6 py-3 rounded-lg shadow-lg hover:scale-110 transition transform animate-pulse flex items-center gap-2"><i class="fa-solid fa-phone"></i> Contact</button>
             </div>
         </div>
+        <div class="md:w-1/2 mt-8 md:mt-0 flex justify-center">
+            <img src="./images/profile.jpeg" alt="Saikot" class="w-80 md:w-96 rounded-lg shadow-lg">
+        </div>
     </section>
-    <section id="skills">
-        <div class="skill-container">
-            <div class="section-heading">
-                <h2>What I do</h2>
-                <p>I am a Computer Science & Engineering student who is currently learning web development. I focus on building a strong foundation in front-end technologies and gradually moving towards full-stack development. I enjoy learning by building
-                    simple, clean, and responsive web pages while improving my problem-solving skills every day.</p>
+
+    <section id="about" class="py-12 fade-in">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-white mb-2">About Me</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">I am a Computer Science and Engineering student with a strong interest in web development. I focus on building clean, responsive, and user-friendly web interfaces while continuously improving my skills in modern web technologies.</p>
             </div>
-            <div class="skill-box">
-                <div class="skill-card">
-                    <img src="images/icons/js.png" alt="js">
-                    <h3>Vanilla JavaScript</h3>
-                    <p>I use JavaScript to add basic interactivity to websites, such as handling user input, DOM manipulation, and simple logic-based features. I am continuously practicing core JavaScript concepts to strengthen my fundamentals.</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition fade-in">
+                    <p class="text-gray-400">Name:</p>
+                    <h4 class="font-semibold text-white">Saikot Islam</h4>
                 </div>
-                <div class="skill-card">
-                    <img src="images/icons/react.png" alt="react">
-                    <h3>React</h3>
-                    <p>I am learning React to build modern and component-based user interfaces. I am getting familiar with concepts like components, props, state, and basic hooks while building small practice projects.</p>
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition fade-in">
+                    <p class="text-gray-400">Email:</p>
+                    <h4 class="font-semibold text-white">saikot08@gmail.com</h4>
                 </div>
-                <div class="skill-card">
-                    <img src="images/icons/nodejs.png" alt="node">
-                    <h3>Node.js</h3>
-                    <p>I am exploring Node.js to understand server-side JavaScript and how backend systems work. Currently, I am learning the basics such as handling requests, simple APIs, and backend logic.</p>
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition fade-in">
+                    <p class="text-gray-400">Date of Birth:</p>
+                    <h4 class="font-semibold text-white">5 September 2005</h4>
                 </div>
-                <div class="skill-card">
-                    <img src="images/icons/mongo.png" alt="mongo">
-                    <h3>MongoDB</h3>
-                    <p>I am learning MongoDB as a beginner-friendly database to store and manage application data. I am practicing basic CRUD operations and understanding how databases connect with backend applications.</p>
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition fade-in">
+                    <p class="text-gray-400">From:</p>
+                    <h4 class="font-semibold text-white">Naogaon, Bangladesh</h4>
                 </div>
             </div>
         </div>
     </section>
-    <section id="resume">
-        <div class="section-heading">
-            <h2>A summary of My Resume</h2>
-        </div>
-        <div class="resume-container">
-            <div class="education">
-                <h2 class="section-title">My Education </h2>
-                <div class="resume-card">
-                    <h3 class="card-title">Bachelor of Science (B.Sc.) in Computer Science & Engineering</h3>
-                    <p class="card-info">Rajshahi University of Engineering & Technology(RUET) / 2024-Present</p>
-                    <p class="card-text">Studying core computer science subjects including programming, digital logic, mathematics, and electronics.</p>
-                </div>
-                <hr>
-                <div class="resume-card">
-                    <h3 class="card-title">Higher Secondary Certificate (HSC)
-                    </h3>
-                    <p class="card-info">Science,Rajshai Board / 2023</p>
-                    <p class="card-text">Completed higher secondary education with a science background, focusing on mathematics and physics.</p>
-                </div>
-                <hr>
-                <div class="resume-card">
-                    <h3 class="card-title">Secondary School Certificate(SSC)</h3>
-                    <p class="card-info">Science , Rajshai Board / 2021</p>
-                    <p class="card-text">Completed secondary school education with strong foundations in mathematics, physics, and other science subjects.</p>
-                </div>
-                <hr>
-            </div>
-            <div class="experience">
-                <h2 class="section-title">My Experience</h2>
-                <div class="resume-card">
-                    <h3 class="card-title">Competitive Programming Practice</h3>
-                    <p class="card-info">Codeforces,CodeChef / 2024 – Present</p>
-                    <p class="card-text">Regular problem solving to improve algorithmic thinking, coding speed, and logical reasoning.</p>
-                </div>
-                <hr>
-                <div class="resume-card">
-                    <h3 class="card-title">Web Development Learner
-                    </h3>
-                    <p class="card-info">HTML, CSS, Basic JavaScript / Ongoing</p>
-                    <p class="card-text">Currently learning web development fundamentals including HTML structure, CSS styling, layouts, and basic interactivity to build responsive web pages.</p>
-                </div>
-                <hr>
-                <div class="resume-card">
-                    <h3 class="card-title">Academic Programming Experience</h3>
-                    <p class="card-info">C, C++, Python, Java</p>
-                    <p class="card-text">Implemented basic programs, logical evaluators, and problem-based solutions as part of coursework.</p>
-                </div>
-                <hr>
-            </div>
 
+    <section id="skills" class="py-12 fade-in">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-white mb-2">What I Do</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">I focus on front-end technologies and gradually moving towards full-stack development. I enjoy building simple, clean, and responsive web pages.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition text-center fade-in">
+                    <img src="images/icons/js.png" alt="JavaScript" class="w-16 mx-auto mb-4">
+                    <h3 class="text-xl font-semibold mb-2 text-white">Vanilla JavaScript</h3>
+                    <p class="text-gray-400 text-sm">I use JavaScript for interactivity, DOM manipulation, and core functionality while strengthening my fundamentals.</p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition text-center fade-in">
+                    <img src="images/icons/react.png" alt="React" class="w-16 mx-auto mb-4">
+                    <h3 class="text-xl font-semibold mb-2 text-white">React</h3>
+                    <p class="text-gray-400 text-sm">Learning React for component-based interfaces with props, state, and hooks while building small projects.</p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition text-center fade-in">
+                    <img src="images/icons/nodejs.png" alt="Node.js" class="w-16 mx-auto mb-4">
+                    <h3 class="text-xl font-semibold mb-2 text-white">Node.js</h3>
+                    <p class="text-gray-400 text-sm">Exploring backend development with Node.js, APIs, and request handling.</p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition text-center fade-in">
+                    <img src="images/icons/mongo.png" alt="MongoDB" class="w-16 mx-auto mb-4">
+                    <h3 class="text-xl font-semibold mb-2 text-white">MongoDB</h3>
+                    <p class="text-gray-400 text-sm">Learning CRUD operations and integrating MongoDB with backend systems.</p>
+                </div>
+            </div>
         </div>
-        <div class="text-center">
-            <button class="btn"><i class="fa-solid fa-download"></i>Download CV</button>
-        </div>
-
     </section>
 
-    <footer>
-        <section class="footer-container">
-            <div class="social">
-                <h2>Lets Connect</h2>
-                <p>Please fill out the form on this section to contact with me or call between 9:00 A.M and 8.00 P.M ET, Monday through Friday.</p>
-                <div class="icons">
-                    <a href=""><img src="images/icons/facebook.png" alt="facebook"></a>
-                    <a href=""><img src="images/icons/twitter.png" alt="twitter"></a>
-                    <a href=""><img src="images/icons/insta.png" alt="insta"></a>
+    <section id="resume" class="py-12 fade-in">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-white">A Summary of My Resume</h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4 text-white">Education</h3>
+                    <div class="space-y-4">
+                        <div class="bg-gray-800 p-4 rounded-lg shadow-lg hover:shadow-xl transition fade-in">
+                            <h4 class="font-bold text-white">B.Sc. in Computer Science & Engineering</h4>
+                            <p class="text-purple-400">RUET / 2024-Present</p>
+                            <p class="text-gray-400 text-sm">Studying core computer science subjects including programming, digital logic, mathematics, and electronics.</p>
+                        </div>
+                        <div class="bg-gray-800 p-4 rounded-lg shadow-lg hover:shadow-xl transition fade-in">
+                            <h4 class="font-bold text-white">Higher Secondary Certificate (HSC)</h4>
+                            <p class="text-purple-400">Rajshai Board / 2023</p>
+                            <p class="text-gray-400 text-sm">Completed higher secondary education with a science background, focusing on mathematics and physics.</p>
+                        </div>
+                        <div class="bg-gray-800 p-4 rounded-lg shadow-lg hover:shadow-xl transition fade-in">
+                            <h4 class="font-bold text-white">Secondary School Certificate (SSC)</h4>
+                            <p class="text-purple-400">Rajshai Board / 2021</p>
+                            <p class="text-gray-400 text-sm">Completed secondary school education with strong foundations in mathematics, physics, and science.</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4 text-white">Experience</h3>
+                    <div class="space-y-4">
+                        <div class="bg-gray-800 p-4 rounded-lg shadow-lg hover:shadow-xl transition fade-in">
+                            <h4 class="font-bold text-white">Competitive Programming Practice</h4>
+                            <p class="text-purple-400">Codeforces, CodeChef / 2024-Present</p>
+                            <p class="text-gray-400 text-sm">Regular problem solving to improve algorithmic thinking, coding speed, and logical reasoning.</p>
+                        </div>
+                        <div class="bg-gray-800 p-4 rounded-lg shadow-lg hover:shadow-xl transition fade-in">
+                            <h4 class="font-bold text-white">Web Development Learner</h4>
+                            <p class="text-purple-400">HTML, CSS, Basic JavaScript / Ongoing</p>
+                            <p class="text-gray-400 text-sm">Learning HTML, CSS, and JavaScript fundamentals for responsive web pages.</p>
+                        </div>
+                        <div class="bg-gray-800 p-4 rounded-lg shadow-lg hover:shadow-xl transition fade-in">
+                            <h4 class="font-bold text-white">Academic Programming Experience</h4>
+                            <p class="text-purple-400">C, C++, Python, Java</p>
+                            <p class="text-gray-400 text-sm">Implemented basic programs and solutions as part of coursework.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <form action="" class="form">
-                <h3>Let’s Message me</h3>
-                <div class="">
-                    <input type="text" name="" id="" placeholder="Your Name">
+            <div class="text-center mt-8 fade-in">
+                <button class="bg-gradient-to-r from-purple-600 to-purple-400 text-white px-6 py-3 rounded-lg shadow-lg hover:scale-110 transition transform animate-pulse flex items-center gap-2"><i class="fa-solid fa-download"></i> Download CV</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-12 fade-in">
+        <div class="container mx-auto px-4 grid md:grid-cols-2 gap-8">
+            <div>
+                <h2 class="text-2xl font-bold mb-4">Let's Connect</h2>
+                <p class="text-gray-400 mb-4">Please fill out the form or call between 9:00 AM and 8:00 PM ET, Monday through Friday.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-purple-400"><i class="fab fa-facebook fa-2x"></i></a>
+                    <a href="#" class="hover:text-purple-400"><i class="fab fa-twitter fa-2x"></i></a>
+                    <a href="#" class="hover:text-purple-400"><i class="fab fa-instagram fa-2x"></i></a>
                 </div>
-                <div class="">
-                    <input type="text" name="" id="" placeholder="Your Email">
-                </div>
-                <div class="">
-                    <textarea rows="10" name="" id="" placeholder="Messege"></textarea>
-                </div>
-                <input class="btn" type="submit" value="Submit">
+            </div>
+            <form class="bg-gray-800 p-6 rounded-lg shadow-lg space-y-4">
+                <h3 class="text-xl font-semibold text-white">Message Me</h3>
+                <input type="text" placeholder="Your Name" class="w-full p-2 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                <input type="email" placeholder="Your Email" class="w-full p-2 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                <textarea rows="5" placeholder="Message" class="w-full p-2 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500"></textarea>
+                <input type="submit" value="Submit" class="bg-gradient-to-r from-purple-600 to-purple-400 w-full py-2 rounded-lg font-semibold hover:scale-110 transition transform animate-pulse cursor-pointer">
             </form>
-        </section>
+        </div>
     </footer>
+
+    <script>
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('show');
+                appearOnScroll.unobserve(entry.target);
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+    </script>
+
 </body>
 
 </html>
