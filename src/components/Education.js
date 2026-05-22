@@ -38,21 +38,24 @@ export default function Education() {
           <p className="section-subtitle">My academic background and educational qualifications</p>
         </motion.div>
 
-        {/* Timeline */}
-        <div className="relative max-w-3xl mx-auto">
-          {/* Vertical Line */}
+        <div className="relative max-w-3xl mx-auto mt-12">
           <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-violet-500/50 via-violet-500/20 to-transparent md:-translate-x-px" />
 
           {educationData.map((item, idx) => (
-            <motion.div key={idx} className={`relative flex items-start gap-8 mb-12 ${idx % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`} initial={{ opacity: 0, y: 40 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.3 + idx * 0.2 }}>
-              {/* Timeline Dot */}
-              <div className="absolute left-6 md:left-1/2 w-3 h-3 bg-violet-500 rounded-full -translate-x-1.5 mt-8 z-10 shadow-lg shadow-violet-500/50" />
+            <motion.div
+              key={idx}
+              className={`relative flex items-start gap-8 mb-12 ${idx % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}
+              initial={{ opacity: 0, y: 40 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.3 + idx * 0.2 }}
+            >
+              <div className="absolute left-6 md:left-1/2 w-3 h-3 bg-violet-500 rounded-full -translate-x-1.5 mt-8 z-10 shadow-lg shadow-violet-500/50">
+                <div className="absolute inset-0 bg-violet-500 rounded-full animate-ping opacity-75" />
+              </div>
 
-              {/* Spacer for desktop */}
               <div className="hidden md:block md:w-1/2" />
 
-              {/* Card */}
-              <div className="ml-14 md:ml-0 md:w-1/2 glass-card p-6">
+              <div className="ml-14 md:ml-0 md:w-1/2 glass-card p-6 hover:border-violet-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-violet-500/5">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-10 h-10 rounded-lg bg-violet-600/10 dark:bg-violet-500/10 border border-violet-600/20 dark:border-violet-500/20 flex items-center justify-center text-violet-600 dark:text-violet-400">
                     <FaGraduationCap />

@@ -4,10 +4,11 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 
 export function Providers({ children }) {
   return (
-    <NextThemesProvider 
-      attribute="class" 
-      defaultTheme="dark" 
+    <NextThemesProvider
+      attribute="class"
+      defaultTheme="dark"
       enableSystem={true}
+      disableTransitionOnChange
     >
       {children}
     </NextThemesProvider>

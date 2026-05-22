@@ -7,16 +7,16 @@ import { FaEnvelope, FaPhone, FaWhatsapp, FaMapMarkerAlt, FaGithub, FaLinkedin, 
 import { FiSend } from "react-icons/fi";
 
 const contactInfo = [
-  { icon: <FaEnvelope />, label: "Email", value: "saikot08@gmail.com", href: "mailto:saikot08@gmail.com" },
-  { icon: <FaPhone />, label: "Phone", value: "+880 1XXX-XXXXXX", href: "tel:+880" },
-  { icon: <FaWhatsapp />, label: "WhatsApp", value: "+880 1XXX-XXXXXX", href: "https://wa.me/880" },
-  { icon: <FaMapMarkerAlt />, label: "Location", value: "Naogaon, Bangladesh", href: null },
+  { icon: <FaEnvelope />, label: "Email", value: "saikotislam08@gmail.com", href: "mailto:saikot08@gmail.com" },
+  { icon: <FaPhone />, label: "Phone", value: "+880 1733176698", href: "tel:+8801733176698" },
+  { icon: <FaWhatsapp />, label: "WhatsApp", value: "+880 1733176698", href: "https://wa.me/8801733176698" },
+  { icon: <FaMapMarkerAlt />, label: "Location", value: "Rajshahi, Bangladesh", href: null },
 ];
 
 const socialLinks = [
   { icon: <FaGithub />, href: "https://github.com/saikot05", label: "GitHub" },
-  { icon: <FaLinkedin />, href: "#", label: "LinkedIn" },
-  { icon: <FaFacebook />, href: "#", label: "Facebook" },
+  { icon: <FaLinkedin />, href: "https://www.linkedin.com/in/saikot-islam49/", label: "LinkedIn" },
+  { icon: <FaFacebook />, href: "https://www.facebook.com/saikot.islam.1466", label: "Facebook" },
 ];
 
 export default function Contact() {

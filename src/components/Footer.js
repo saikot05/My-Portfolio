@@ -13,8 +13,8 @@ const quickLinks = [
 
 const socialLinks = [
   { icon: <FaGithub />, href: "https://github.com/saikot05", label: "GitHub" },
-  { icon: <FaLinkedin />, href: "#", label: "LinkedIn" },
-  { icon: <FaFacebook />, href: "#", label: "Facebook" },
+  { icon: <FaLinkedin />, href: "https://www.linkedin.com/in/saikot-islam49/", label: "LinkedIn" },
+  { icon: <FaFacebook />, href: "https://www.facebook.com/saikot.islam.1466", label: "Facebook" },
 ];
 
 export default function Footer() {
@@ -60,7 +60,7 @@ export default function Footer() {
                 </a>
               ))}
             </div>
-            <p className="text-zinc-500 text-sm">saikot08@gmail.com</p>
+            <p className="text-zinc-500 text-sm">saikotislam08@gmail.com</p>
           </div>
         </div>
 

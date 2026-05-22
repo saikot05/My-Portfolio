@@ -38,19 +38,24 @@ export default function Experience() {
           <p className="section-subtitle">My professional journey and learning experiences</p>
         </motion.div>
 
-        <div className="relative max-w-3xl mx-auto">
+        <div className="relative max-w-3xl mx-auto mt-12">
           <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-purple-500/50 via-purple-500/20 to-transparent md:-translate-x-px" />
 
           {experienceData.map((item, idx) => (
-            <motion.div key={idx} className={`relative flex items-start gap-8 mb-12 ${idx % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`} initial={{ opacity: 0, y: 40 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.3 + idx * 0.2 }}>
-              {/* Timeline Dot */}
-              <div className="absolute left-6 md:left-1/2 w-3 h-3 bg-purple-500 rounded-full -translate-x-1.5 mt-8 z-10 shadow-lg shadow-purple-500/50" />
+            <motion.div
+              key={idx}
+              className={`relative flex items-start gap-8 mb-12 ${idx % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}
+              initial={{ opacity: 0, y: 40 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.3 + idx * 0.2 }}
+            >
+              <div className="absolute left-6 md:left-1/2 w-3 h-3 bg-purple-500 rounded-full -translate-x-1.5 mt-8 z-10 shadow-lg shadow-purple-500/50">
+                <div className="absolute inset-0 bg-purple-500 rounded-full animate-ping opacity-75" />
+              </div>
 
-              {/* Spacer for desktop */}
               <div className="hidden md:block md:w-1/2" />
 
-              {/* Card */}
-              <div className="ml-14 md:ml-0 md:w-1/2 glass-card p-6">
+              <div className="ml-14 md:ml-0 md:w-1/2 glass-card p-6 hover:border-purple-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/5">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-10 h-10 rounded-lg bg-purple-600/10 dark:bg-purple-500/10 border border-purple-600/20 dark:border-purple-500/20 flex items-center justify-center text-purple-600 dark:text-purple-400">
                     <FaBriefcase />

@@ -6,9 +6,9 @@ import { FaUser, FaEnvelope, FaCalendar, FaMapMarkerAlt } from "react-icons/fa";
 
 const infoCards = [
   { icon: <FaUser />, label: "Name", value: "Md Saikot Islam" },
-  { icon: <FaEnvelope />, label: "Email", value: "saikot08@gmail.com" },
+  { icon: <FaEnvelope />, label: "Email", value: "saikotislam08@gmail.com" },
   { icon: <FaCalendar />, label: "Date of Birth", value: "5 September 2005" },
-  { icon: <FaMapMarkerAlt />, label: "Location", value: "Naogaon, Bangladesh" },
+  { icon: <FaMapMarkerAlt />, label: "Location", value: "Rajshahi, Bangladesh" },
 ];
 
 export default function About() {

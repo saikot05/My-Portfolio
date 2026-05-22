@@ -23,7 +23,7 @@ const categories = [
       { name: "Node.js", icon: <FaNodeJs />, level: 55, color: "#68a063" },
       { name: "Express.js", icon: <SiExpress />, level: 50, color: "#7c3aed" },
       { name: "MongoDB", icon: <SiMongodb />, level: 55, color: "#47a248" },
-      { name: "Firebase", icon: <SiFirebase />, level: 50, color: "#ffca28" },
+
     ],
   },
   {
