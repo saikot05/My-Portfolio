@@ -32,3 +32,8 @@ my-portfolio/
 │   └── lib/           # Utility configurations
 ├── public/            # Static assets (images, fonts, resume)
 └── tailwind.config.ts # Tailwind CSS configuration
+
+
+
+
+Live-Link:https://saikot-portfolio.vercel.app
