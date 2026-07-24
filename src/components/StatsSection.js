@@ -1,18 +1,54 @@
 "use client";
 
-import { useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Activity, GitCommit, Award, Code2, ShieldCheck, Flame, ExternalLink } from "lucide-react";
+import { GitHubCalendar } from "react-github-calendar";
+import { Activity, GitCommit, Code2, Flame, ExternalLink, FolderGit2, Users } from "lucide-react";
 
 export default function StatsSection() {
+  const [githubData, setGithubData] = useState({
+    public_repos: 31,
+    followers: 2,
+    loading: true,
+  });
+
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
+  useEffect(() => {
+    async function fetchGithubStats() {
+      try {
+        const res = await fetch("https://api.github.com/users/saikot05");
+        if (res.ok) {
+          const data = await res.json();
+          setGithubData({
+            public_repos: data.public_repos || 31,
+            followers: data.followers || 2,
+            loading: false,
+          });
+        }
+      } catch (err) {
+        console.error("Failed to fetch GitHub API stats:", err);
+      }
+    }
+
+    fetchGithubStats();
+  }, []);
+
   const metrics = [
+    {
+      id: "repos",
+      title: `${githubData.public_repos} Public Repos`,
+      subtitle: "Open Source Repositories & Modern Projects on GitHub",
+      icon: FolderGit2,
+      color: "text-violet-500",
+      bgColor: "bg-violet-500/10",
+      borderColor: "border-violet-500/20",
+    },
     {
       id: "cp",
       title: "500+ Solved",
-      subtitle: "Competitive Problems (Codeforces, CodeChef)",
+      subtitle: "Competitive Problems (Codeforces, CodeChef, LeetCode)",
       icon: Flame,
       color: "text-amber-500",
       bgColor: "bg-amber-500/10",
@@ -21,26 +57,17 @@ export default function StatsSection() {
     {
       id: "projects",
       title: "5+ Full Stack",
-      subtitle: "Production Next.js & MERN Web Apps",
+      subtitle: "Production Web Applications (MERN & Next.js 16)",
       icon: Code2,
-      color: "text-violet-500",
-      bgColor: "bg-violet-500/10",
-      borderColor: "border-violet-500/20",
-    },
-    {
-      id: "commits",
-      title: "1,200+ Commits",
-      subtitle: "GitHub Open Source & Repository Activity",
-      icon: GitCommit,
       color: "text-emerald-500",
       bgColor: "bg-emerald-500/10",
       borderColor: "border-emerald-500/20",
     },
     {
-      id: "security",
-      title: "99.9% Uptime",
-      subtitle: "JWT Bearer & Stripe API Security Standards",
-      icon: ShieldCheck,
+      id: "contributions",
+      title: "1,200+ Commits",
+      subtitle: "Live GitHub Activity Density & Version Control",
+      icon: GitCommit,
       color: "text-cyan-500",
       bgColor: "bg-cyan-500/10",
       borderColor: "border-cyan-500/20",
@@ -51,7 +78,7 @@ export default function StatsSection() {
     {
       platform: "Codeforces",
       handle: "saikot_05",
-      rating: "Active Problem Solver",
+      rating: "Active Contestant",
       link: "https://codeforces.com/profile/saikot_05",
       badgeColor: "bg-blue-500/10 text-blue-500 border-blue-500/20",
     },
@@ -65,11 +92,17 @@ export default function StatsSection() {
     {
       platform: "GitHub",
       handle: "saikot05",
-      rating: "1,200+ Contributions",
+      rating: `${githubData.public_repos} Repositories`,
       link: "https://github.com/saikot05",
       badgeColor: "bg-violet-500/10 text-violet-500 border-violet-500/20",
     },
   ];
+
+  // Custom violet/purple theme palette matching portfolio design
+  const calendarTheme = {
+    dark: ["#161b22", "#39265c", "#5e32a8", "#8b5cf6", "#a78bfa"],
+    light: ["#ebedf0", "#d8b4fe", "#c084fc", "#9333ea", "#6b21a8"],
+  };
 
   return (
     <section id="stats" className="relative py-20 overflow-hidden">
@@ -86,11 +119,11 @@ export default function StatsSection() {
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-600 dark:text-violet-400 text-xs font-semibold uppercase tracking-widest mb-4">
             <Activity className="w-3.5 h-3.5" />
-            <span>Engineering Metrics & Activity</span>
+            <span>Real-Time GitHub & Problem Solving Data</span>
           </div>
-          <h2 className="section-title">GitHub & Competitive Metrics</h2>
+          <h2 className="section-title">GitHub Activity & Metrics</h2>
           <p className="section-subtitle">
-            A real-time overview of problem solving activity, code volume, and algorithmic profiles across platforms.
+            Authentic commit activity matrix, real-time GitHub REST API repository stats, and competitive programming profiles.
           </p>
         </motion.div>
 
@@ -125,57 +158,42 @@ export default function StatsSection() {
           })}
         </div>
 
-        {/* GitHub Heatmap Grid Card */}
+        {/* Real Live GitHub Activity Calendar Card */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="glass-card p-6 sm:p-8 rounded-3xl border border-zinc-200/50 dark:border-white/10 mb-12 space-y-6"
+          className="glass-card p-6 sm:p-8 rounded-3xl border border-zinc-200/50 dark:border-white/10 mb-12 space-y-6 overflow-hidden"
         >
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
               <h3 className="text-xl font-bold text-zinc-900 dark:text-white font-[Outfit] flex items-center gap-2">
                 <GitCommit className="w-5 h-5 text-violet-500" />
-                <span>GitHub Contribution Heatmap</span>
+                <span>GitHub Live Contribution Calendar (@saikot05)</span>
               </h3>
-              <p className="text-xs text-zinc-500 mt-1">Live repository commit density across 52 active weeks</p>
+              <p className="text-xs text-zinc-500 mt-1">Authentic real-time contribution heatmap fetched directly from GitHub</p>
             </div>
             <a
               href="https://github.com/saikot05"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 rounded-xl bg-violet-600 hover:bg-violet-700 text-white text-xs font-semibold flex items-center gap-1.5 shadow-md transition-all"
+              className="px-4 py-2 rounded-xl bg-violet-600 hover:bg-violet-700 text-white text-xs font-semibold flex items-center gap-1.5 shadow-md transition-all shrink-0"
             >
               <span>View GitHub Profile</span>
               <ExternalLink className="w-3.5 h-3.5" />
             </a>
           </div>
 
-          {/* GitHub Heatmap Grid Canvas Simulation */}
-          <div className="overflow-x-auto pt-2 pb-1">
-            <div className="flex gap-1.5 min-w-[700px]">
-              {Array.from({ length: 52 }).map((_, weekIdx) => (
-                <div key={weekIdx} className="flex flex-col gap-1.5 flex-1">
-                  {Array.from({ length: 7 }).map((_, dayIdx) => {
-                    const intensity = (weekIdx * 7 + dayIdx * 3) % 5;
-                    const colors = [
-                      "bg-zinc-200 dark:bg-zinc-800/60",
-                      "bg-violet-900/40 border border-violet-500/30",
-                      "bg-violet-700/60",
-                      "bg-violet-600",
-                      "bg-violet-400 shadow-sm shadow-violet-500/50",
-                    ];
-                    return (
-                      <div
-                        key={dayIdx}
-                        className={`h-3 w-full rounded-sm ${colors[intensity]} transition-all hover:scale-125 cursor-pointer`}
-                        title={`Week ${weekIdx + 1}, Day ${dayIdx + 1}: ${intensity * 4 + 1} commits`}
-                      />
-                    );
-                  })}
-                </div>
-              ))}
-            </div>
+          {/* GitHubCalendar Integration */}
+          <div className="w-full overflow-x-auto pt-2 pb-2 flex justify-center text-zinc-900 dark:text-zinc-100">
+            <GitHubCalendar
+              username="saikot05"
+              colorScheme="dark"
+              fontSize={12}
+              blockSize={12}
+              blockMargin={4}
+              theme={calendarTheme}
+            />
           </div>
         </motion.div>
 
