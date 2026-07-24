@@ -175,7 +175,7 @@ export default function Skills() {
                     cy="40" 
                     r="35" 
                     fill="none" 
-                    stroke={skill.color} 
+                    stroke="#8b5cf6" 
                     strokeWidth="6" 
                     strokeLinecap="round" 
                     strokeDasharray={`${2 * Math.PI * 35}`} 
