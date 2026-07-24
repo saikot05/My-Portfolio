@@ -13,6 +13,7 @@ import CodeSnippetShowcase from "@/components/CodeSnippetShowcase";
 import StatsSection from "@/components/StatsSection";
 import Education from "@/components/Education";
 import Testimonials from "@/components/Testimonials";
+import PerformanceWidget from "@/components/PerformanceWidget";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import CommandPalette from "@/components/CommandPalette";
@@ -36,6 +37,9 @@ export default function Home() {
         <StatsSection />
         <Education />
         <Testimonials />
+        <div className="section-container my-12">
+          <PerformanceWidget />
+        </div>
         <Contact />
       </main>
       <Footer />

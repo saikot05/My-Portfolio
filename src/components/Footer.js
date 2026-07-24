@@ -4,13 +4,16 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaFacebook, FaHeart } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-import { FiArrowUpRight, FiMail } from "react-icons/fi";
+import { FiArrowUpRight, FiMail, FiCheckCircle } from "react-icons/fi";
+import { ShieldCheck, Cpu } from "lucide-react";
 
 const quickLinks = [
   { name: "Home", href: "#home" },
-  { name: "About", href: "#about" },
-  { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#projects" },
+  { name: "Skills", href: "#skills" },
+  { name: "Experience", href: "#experience" },
+  { name: "About", href: "#about" },
+  { name: "Education", href: "#education" },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -24,8 +27,13 @@ const socialLinks = [
 export default function Footer() {
   const handleNavClick = (e, href) => {
     e.preventDefault();
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    const targetId = href.replace("#", "");
+    const el = document.getElementById(targetId);
+    if (el) {
+      const yOffset = -80;
+      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
   };
 
   return (
@@ -40,8 +48,25 @@ export default function Footer() {
               <span className="text-zinc-900 dark:text-white transition-colors">kot</span>
             </Link>
             <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed mb-4 transition-colors">
-              Aspiring Full Stack Developer passionate about building clean, responsive, and user-friendly web applications with modern tech stacks.
+              Full Stack Web Developer & CSE Student at RUET. Passionate about engineering clean, responsive, and user-friendly web applications with Next.js 16 & MERN stack.
             </p>
+            
+            {/* CI/CD & Build Status Badges */}
+            <div className="flex flex-wrap items-center gap-2 mb-4">
+              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[11px] font-mono font-semibold">
+                <FiCheckCircle className="w-3 h-3" />
+                <span>Build: Passing</span>
+              </span>
+              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-violet-500/10 border border-violet-500/20 text-violet-600 dark:text-violet-400 text-[11px] font-mono font-semibold">
+                <Cpu className="w-3 h-3" />
+                <span>Next.js 16</span>
+              </span>
+              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-cyan-500/10 border border-cyan-500/20 text-cyan-600 dark:text-cyan-400 text-[11px] font-mono font-semibold">
+                <ShieldCheck className="w-3 h-3" />
+                <span>Lighthouse 98%</span>
+              </span>
+            </div>
+
             <a 
               href="mailto:saikotislam08@gmail.com" 
               className="inline-flex items-center gap-2 text-xs font-medium text-violet-600 dark:text-violet-400 hover:underline"

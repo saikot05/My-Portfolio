@@ -20,6 +20,7 @@ import {
 import { FaGithub } from "react-icons/fa";
 import ProjectsSkeleton from "./ProjectsSkeleton";
 import ApiInspector from "./ApiInspector";
+import ArchitectureModal from "./ArchitectureModal";
 
 // Helper function to normalize techStack regardless of string array or object schema
 const extractTechStack = (techStack) => {
@@ -194,7 +195,7 @@ export default function Projects() {
   
   // Modal state
   const [activeModalProject, setActiveModalProject] = useState(null);
-
+  const [archModalOpen, setArchModalOpen] = useState(false);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -434,6 +435,13 @@ export default function Projects() {
                       <span>Server API Code</span>
                     </a>
                   )}
+                  <button
+                    onClick={() => setArchModalOpen(true)}
+                    className="px-5 py-3 rounded-xl bg-violet-600 hover:bg-violet-700 text-white font-semibold text-sm flex items-center gap-2 transition-all cursor-pointer shadow-lg shadow-violet-500/20"
+                  >
+                    <Layers className="w-4 h-4" />
+                    <span>View System Architecture</span>
+                  </button>
                 </div>
 
                 {/* Dynamic Key Metrics Breakdown */}
@@ -499,6 +507,13 @@ export default function Projects() {
           </div>
         )}
       </AnimatePresence>
+
+      {/* System Architecture Flow Modal */}
+      <ArchitectureModal
+        isOpen={archModalOpen}
+        onClose={() => setArchModalOpen(false)}
+        project={activeModalProject}
+      />
     </section>
   );
 }
