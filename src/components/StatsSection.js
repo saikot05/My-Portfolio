@@ -90,6 +90,13 @@ export default function StatsSection() {
       badgeColor: "bg-amber-500/10 text-amber-500 border-amber-500/20",
     },
     {
+      platform: "LeetCode",
+      handle: "saikot_049",
+      rating: "Algorithms & DS Solver",
+      link: "https://leetcode.com/u/saikot_049",
+      badgeColor: "bg-orange-500/10 text-orange-500 border-orange-500/20",
+    },
+    {
       platform: "GitHub",
       handle: "saikot05",
       rating: `${githubData.public_repos} Repositories`,
@@ -198,7 +205,7 @@ export default function StatsSection() {
         </motion.div>
 
         {/* Competitive Programming Profiles Badges */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {profiles.map((p) => (
             <a
               key={p.platform}
