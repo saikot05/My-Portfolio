@@ -29,29 +29,38 @@ export default function Navbar() {
 
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
-
-      // Section IDs ordered exactly as they appear in the DOM page flow
-      const navSectionIds = ["home", "projects", "skills", "experience", "about", "education", "contact"];
-      const scrollPosition = window.scrollY + 220;
-
-      let currentSection = "home";
-
-      for (const sectionId of navSectionIds) {
-        const el = document.getElementById(sectionId);
-        if (el) {
-          const top = el.offsetTop;
-          if (scrollPosition >= top) {
-            currentSection = sectionId;
-          }
-        }
-      }
-
-      setActiveSection(currentSection);
     };
 
-    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    // IntersectionObserver watching all major portfolio sections
+    const navSectionIds = ["home", "projects", "skills", "experience", "about", "education", "contact"];
+    
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observerOptions = {
+      root: null,
+      rootMargin: "-20% 0px -60% 0px",
+      threshold: 0,
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    navSectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      observer.disconnect();
+    };
   }, []);
 
   const handleNavClick = (e, href) => {
