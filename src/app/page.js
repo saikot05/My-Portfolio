@@ -12,6 +12,7 @@ import ArchitectureViewer from "@/components/ArchitectureViewer";
 import CodeSnippetShowcase from "@/components/CodeSnippetShowcase";
 import StatsSection from "@/components/StatsSection";
 import Education from "@/components/Education";
+import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import CommandPalette from "@/components/CommandPalette";
@@ -34,6 +35,7 @@ export default function Home() {
         <CodeSnippetShowcase />
         <StatsSection />
         <Education />
+        <Testimonials />
         <Contact />
       </main>
       <Footer />

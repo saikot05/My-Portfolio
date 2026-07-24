@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 import ProjectsSkeleton from "./ProjectsSkeleton";
+import ApiInspector from "./ApiInspector";
 
 // Helper function to normalize techStack regardless of string array or object schema
 const extractTechStack = (techStack) => {
@@ -473,6 +474,9 @@ export default function Projects() {
                     </ul>
                   </div>
                 )}
+
+                {/* API Live Inspector */}
+                <ApiInspector />
 
                 {/* Full Tech Stack Pills */}
                 <div>
