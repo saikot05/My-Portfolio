@@ -31,10 +31,13 @@ export default function StatsSection() {
     loading: true,
   });
 
+  const [mounted, setMounted] = useState(false);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   useEffect(() => {
+    setMounted(true);
+
     // 1. Fetch live GitHub REST API stats
     async function fetchGithubStats() {
       try {
@@ -266,16 +269,20 @@ export default function StatsSection() {
             </a>
           </div>
 
-          {/* GitHubCalendar Integration */}
-          <div className="w-full overflow-x-auto pt-2 pb-2 flex justify-center text-zinc-900 dark:text-zinc-100">
-            <GitHubCalendar
-              username="saikot05"
-              colorScheme="dark"
-              fontSize={12}
-              blockSize={12}
-              blockMargin={4}
-              theme={calendarTheme}
-            />
+          {/* GitHubCalendar Integration with Hydration Guard */}
+          <div className="w-full overflow-x-auto pt-2 pb-2 flex justify-center text-zinc-900 dark:text-zinc-100 min-h-[140px] items-center">
+            {mounted ? (
+              <GitHubCalendar
+                username="saikot05"
+                colorScheme="dark"
+                fontSize={12}
+                blockSize={12}
+                blockMargin={4}
+                theme={calendarTheme}
+              />
+            ) : (
+              <div className="w-full h-32 bg-zinc-200 dark:bg-white/5 rounded-2xl animate-pulse" />
+            )}
           </div>
         </motion.div>
 

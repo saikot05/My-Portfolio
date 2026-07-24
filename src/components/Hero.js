@@ -136,6 +136,7 @@ export default function Hero() {
                   alt="Md Saikot Islam"
                   fill
                   priority
+                  sizes="(max-width: 768px) 256px, (max-width: 1024px) 320px, 384px"
                   className="object-cover hover:scale-105 transition-transform duration-500"
                 />
               </div>
