@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { GitHubCalendar } from "react-github-calendar";
-import { Activity, GitCommit, Code2, Flame, ExternalLink, FolderGit2, Users } from "lucide-react";
+import { Activity, GitCommit, Code2, Flame, ExternalLink, FolderGit2, Trophy } from "lucide-react";
 
 export default function StatsSection() {
   const [githubData, setGithubData] = useState({
@@ -12,10 +12,19 @@ export default function StatsSection() {
     loading: true,
   });
 
+  const [codeforcesData, setCodeforcesData] = useState({
+    rating: 1252,
+    maxRating: 1293,
+    rank: "pupil",
+    handle: "Saikot",
+    loading: true,
+  });
+
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   useEffect(() => {
+    // Fetch GitHub REST API stats
     async function fetchGithubStats() {
       try {
         const res = await fetch("https://api.github.com/users/saikot05");
@@ -32,7 +41,30 @@ export default function StatsSection() {
       }
     }
 
+    // Fetch Codeforces REST API user stats
+    async function fetchCodeforcesStats() {
+      try {
+        const res = await fetch("https://codeforces.com/api/user.info?handles=Saikot");
+        if (res.ok) {
+          const data = await res.json();
+          if (data.status === "OK" && data.result?.[0]) {
+            const user = data.result[0];
+            setCodeforcesData({
+              rating: user.rating || 1252,
+              maxRating: user.maxRating || 1293,
+              rank: user.rank || "pupil",
+              handle: user.handle || "Saikot",
+              loading: false,
+            });
+          }
+        }
+      } catch (err) {
+        console.error("Failed to fetch Codeforces API stats:", err);
+      }
+    }
+
     fetchGithubStats();
+    fetchCodeforcesStats();
   }, []);
 
   const metrics = [
@@ -55,6 +87,15 @@ export default function StatsSection() {
       borderColor: "border-amber-500/20",
     },
     {
+      id: "codeforces",
+      title: `Rating ${codeforcesData.rating}`,
+      subtitle: `Codeforces ${codeforcesData.rank.toUpperCase()} (Max: ${codeforcesData.maxRating})`,
+      icon: Trophy,
+      color: "text-blue-500",
+      bgColor: "bg-blue-500/10",
+      borderColor: "border-blue-500/20",
+    },
+    {
       id: "projects",
       title: "5+ Full Stack",
       subtitle: "Production Web Applications (MERN & Next.js 16)",
@@ -63,23 +104,14 @@ export default function StatsSection() {
       bgColor: "bg-emerald-500/10",
       borderColor: "border-emerald-500/20",
     },
-    {
-      id: "contributions",
-      title: "1,200+ Commits",
-      subtitle: "Live GitHub Activity Density & Version Control",
-      icon: GitCommit,
-      color: "text-cyan-500",
-      bgColor: "bg-cyan-500/10",
-      borderColor: "border-cyan-500/20",
-    },
   ];
 
   const profiles = [
     {
       platform: "Codeforces",
-      handle: "saikot_05",
-      rating: "Active Contestant",
-      link: "https://codeforces.com/profile/saikot_05",
+      handle: codeforcesData.handle,
+      rating: `${codeforcesData.rank.toUpperCase()} (Rating: ${codeforcesData.rating})`,
+      link: `https://codeforces.com/profile/${codeforcesData.handle}`,
       badgeColor: "bg-blue-500/10 text-blue-500 border-blue-500/20",
     },
     {
@@ -126,11 +158,11 @@ export default function StatsSection() {
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-600 dark:text-violet-400 text-xs font-semibold uppercase tracking-widest mb-4">
             <Activity className="w-3.5 h-3.5" />
-            <span>Real-Time GitHub & Problem Solving Data</span>
+            <span>Real-Time GitHub & Codeforces Live API Data</span>
           </div>
-          <h2 className="section-title">GitHub Activity & Metrics</h2>
+          <h2 className="section-title">GitHub & Competitive Metrics</h2>
           <p className="section-subtitle">
-            Authentic commit activity matrix, real-time GitHub REST API repository stats, and competitive programming profiles.
+            Authentic commit activity matrix, real-time GitHub REST API repository stats, and live Codeforces user ratings.
           </p>
         </motion.div>
 

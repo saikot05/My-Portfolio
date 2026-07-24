@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import ScrollProgress from "@/components/ScrollProgress";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Projects from "@/components/Projects";
@@ -21,6 +22,7 @@ export default function Home() {
 
   return (
     <>
+      <ScrollProgress />
       <Navbar />
       <main>
         <Hero />
