@@ -3,23 +3,22 @@ import "./globals.css";
 
 export const metadata = {
   title: {
-    default: "Md Saikot Islam | Full Stack Developer Portfolio",
+    default: "Md Saikot Islam | Full Stack Web Developer & CSE Student at RUET",
     template: "%s | Md Saikot Islam",
   },
   description:
-    "Portfolio of Md Saikot Islam — a passionate CSE student at RUET and Full Stack Developer from Bangladesh. Explore full stack web projects, technical skills, and software engineering experience.",
+    "Portfolio of Md Saikot Islam — Full Stack Web Developer and CSE Undergraduate at RUET, Bangladesh. Specializing in Next.js 16, React 19, Node.js, Express, MongoDB Atlas, and Competitive Programming.",
   keywords: [
     "Md Saikot Islam",
     "Md Saikot Islam Portfolio",
-    "Full Stack Developer",
-    "Web Developer Bangladesh",
-    "RUET CSE",
-    "React Developer",
-    "Next.js Developer",
-    "Node.js Developer",
-    "Tailwind CSS",
-    "JavaScript Developer",
-    "Software Engineer Portfolio",
+    "Full Stack Developer Bangladesh",
+    "RUET CSE Developer",
+    "Next.js 16 Developer",
+    "React 19 Developer",
+    "MERN Stack Engineer",
+    "Codeforces Saikot",
+    "LeetCode Saikot",
+    "Rajshahi Software Engineer",
   ],
   authors: [{ name: "Md Saikot Islam", url: "https://saikot-portfolio.vercel.app" }],
   creator: "Md Saikot Islam",
@@ -29,9 +28,9 @@ export const metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Md Saikot Islam | Full Stack Developer Portfolio",
+    title: "Md Saikot Islam — Full Stack Web Developer & CSE Student at RUET",
     description:
-      "Explore the modern web portfolio of Md Saikot Islam — featuring full-stack applications, interactive UI components, algorithms, and software development experience.",
+      "Explore the modern web portfolio of Md Saikot Islam — featuring 5+ live full-stack applications, system architecture visualizers, interactive CLI terminal, and algorithm metrics.",
     url: "https://saikot-portfolio.vercel.app",
     siteName: "Md Saikot Islam Portfolio",
     images: [
@@ -39,7 +38,7 @@ export const metadata = {
         url: "/images/profile.jpeg",
         width: 1200,
         height: 630,
-        alt: "Md Saikot Islam - Full Stack Developer Portfolio",
+        alt: "Md Saikot Islam - Full Stack Web Developer Portfolio",
       },
     ],
     locale: "en_US",
@@ -47,9 +46,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Md Saikot Islam | Full Stack Developer Portfolio",
+    title: "Md Saikot Islam | Full Stack Web Developer & CSE Student at RUET",
     description:
-      "Explore full stack web projects, frontend engineering skills, and technical experience of Md Saikot Islam.",
+      "Explore full-stack web projects, MERN engineering, and competitive programming metrics of Md Saikot Islam.",
     creator: "@saikot05",
     images: ["/images/profile.jpeg"],
   },
@@ -74,6 +73,40 @@ export const metadata = {
   },
 };
 
+const jsonLdPersonSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Md Saikot Islam",
+  "jobTitle": "Full Stack Web Developer",
+  "alumniOf": {
+    "@type": "EducationalOrganization",
+    "name": "Rajshahi University of Engineering & Technology (RUET)",
+    "alternateName": "RUET"
+  },
+  "url": "https://saikot-portfolio.vercel.app",
+  "sameAs": [
+    "https://github.com/saikot05",
+    "https://www.linkedin.com/in/saikot-islam49/",
+    "https://codeforces.com/profile/saikot_05",
+    "https://www.codechef.com/users/saikot_05",
+    "https://leetcode.com/u/saikot_049/",
+    "https://x.com/saikot05",
+    "https://www.facebook.com/saikot.islam.1466"
+  ],
+  "knowsAbout": [
+    "Next.js",
+    "React",
+    "Tailwind CSS",
+    "Node.js",
+    "Express.js",
+    "MongoDB Atlas",
+    "Competitive Programming",
+    "C++",
+    "JavaScript",
+    "TypeScript"
+  ]
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -81,6 +114,10 @@ export default function RootLayout({ children }) {
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800&display=swap"
           rel="stylesheet"
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdPersonSchema) }}
         />
       </head>
       <body>
