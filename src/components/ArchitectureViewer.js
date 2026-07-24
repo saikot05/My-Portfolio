@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Cpu, Server, Database, ShieldCheck, Globe, ArrowRight, CheckCircle2, Layers } from "lucide-react";
+import { Cpu, Globe, ShieldCheck, Database, ArrowRight, CheckCircle2, Layers } from "lucide-react";
 
 export default function ArchitectureViewer() {
   const [selectedNode, setSelectedNode] = useState("client");
@@ -72,7 +72,7 @@ export default function ArchitectureViewer() {
           transition={{ duration: 0.6 }}
           className="text-center max-w-3xl mx-auto mb-14"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-600 dark:text-violet-400 text-xs font-semibold uppercase tracking-widest mb-4">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-700 dark:text-violet-400 text-xs font-semibold uppercase tracking-widest mb-4">
             <Cpu className="w-3.5 h-3.5" />
             <span>Full Stack System Design</span>
           </div>
@@ -82,7 +82,7 @@ export default function ArchitectureViewer() {
           </p>
         </motion.div>
 
-        {/* Interactive Diagram Pipeline */}
+        {/* Interactive Diagram Pipeline Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
           {nodes.map((node, index) => {
             const Icon = node.icon;
@@ -93,16 +93,22 @@ export default function ArchitectureViewer() {
                   onClick={() => setSelectedNode(node.id)}
                   className={`w-full p-5 rounded-2xl border text-left transition-all duration-300 cursor-pointer ${
                     isSelected
-                      ? "bg-zinc-900 text-white border-violet-500 shadow-xl shadow-violet-500/20 scale-105"
-                      : "glass-card text-zinc-700 dark:text-zinc-300 border-zinc-200/50 dark:border-white/10 hover:border-violet-500/40"
+                      ? "bg-zinc-900 text-white border-2 border-violet-500 shadow-xl shadow-violet-500/25 scale-105"
+                      : "bg-white dark:bg-white/5 text-zinc-900 dark:text-zinc-100 border-zinc-200 dark:border-white/10 hover:border-violet-500/50 shadow-sm hover:shadow-md"
                   }`}
                 >
                   <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${node.color} text-white flex items-center justify-center mb-3 shadow-md`}>
                     <Icon className="w-5 h-5" />
                   </div>
-                  <span className="text-[10px] font-mono font-bold text-violet-400 uppercase tracking-wider">Step 0{index + 1}</span>
-                  <h4 className="text-base font-bold font-[Outfit] mt-0.5 mb-1">{node.title}</h4>
-                  <p className="text-xs text-zinc-400">{node.subtitle}</p>
+                  <span className={`text-[10px] font-mono font-bold uppercase tracking-wider ${isSelected ? "text-violet-400" : "text-violet-600 dark:text-violet-400"}`}>
+                    Step 0{index + 1}
+                  </span>
+                  <h4 className="text-base font-bold font-[Outfit] mt-0.5 mb-1 text-zinc-900 dark:text-white">
+                    {node.title}
+                  </h4>
+                  <p className={`text-xs ${isSelected ? "text-zinc-400" : "text-zinc-600 dark:text-zinc-400"}`}>
+                    {node.subtitle}
+                  </p>
                 </button>
 
                 {/* Arrow Connector for Desktop */}
@@ -122,7 +128,7 @@ export default function ArchitectureViewer() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="glass-card p-6 sm:p-8 rounded-3xl border border-violet-500/30 bg-zinc-900/90 text-white shadow-2xl space-y-6"
+          className="glass-card p-6 sm:p-8 rounded-3xl border border-violet-500/30 bg-zinc-950 text-white shadow-2xl space-y-6"
         >
           <div className="flex items-center gap-3">
             <div className={`p-3 rounded-xl bg-gradient-to-br ${activeNodeData.color} text-white`}>
@@ -134,7 +140,7 @@ export default function ArchitectureViewer() {
             </div>
           </div>
 
-          <p className="text-zinc-300 text-sm leading-relaxed">
+          <p className="text-zinc-200 text-sm sm:text-base leading-relaxed">
             {activeNodeData.details.description}
           </p>
 
