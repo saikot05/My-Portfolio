@@ -2,14 +2,14 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Terminal as TerminalIcon, X, Minus, Square, CornerDownLeft } from "lucide-react";
+import { Terminal as TerminalIcon, X, CornerDownLeft } from "lucide-react";
 
 export default function Terminal({ externalOpen, setExternalOpen }) {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
   const [history, setHistory] = useState([
-    { type: "system", text: "Welcome to Saikot Islam's Interactive Developer Terminal (v1.0.0)" },
-    { type: "system", text: "Type 'help' to see all available CLI commands." },
+    { type: "system", text: "Welcome to Saikot Islam's Interactive Developer CLI Terminal (v1.0.0)" },
+    { type: "system", text: "Type 'help' to see all available interactive commands." },
   ]);
   const [commandHistory, setCommandHistory] = useState([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
@@ -25,13 +25,16 @@ export default function Terminal({ externalOpen, setExternalOpen }) {
 
   useEffect(() => {
     if (isOpen) {
-      setTimeout(() => inputRef.current?.focus(), 100);
+      const timer = setTimeout(() => inputRef.current?.focus(), 80);
+      return () => clearTimeout(timer);
     }
   }, [isOpen]);
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [history]);
+    if (isOpen) {
+      bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [history, isOpen]);
 
   const handleCommand = (cmdStr) => {
     const rawCmd = cmdStr.trim().toLowerCase();
@@ -49,14 +52,16 @@ export default function Terminal({ externalOpen, setExternalOpen }) {
         newLogs.push({
           type: "output",
           text: `Available CLI Commands:
-  help             - Show this help menu
+  help             - Show this interactive help menu
   about            - Display developer background & bio
   skills           - List full-stack technology stack
   projects         - Show live architectural project names
   contact          - Get direct email, phone & location
   download-resume  - Trigger PDF resume download
-  clear            - Clear terminal logs
-  whoami           - Show visitor status`,
+  sudo             - Run as root superuser
+  matrix font      - Enter retro binary matrix mode
+  whoami           - Show visitor authentication status
+  clear            - Clear terminal logs buffer`,
         });
         break;
 
@@ -64,7 +69,7 @@ export default function Terminal({ externalOpen, setExternalOpen }) {
         newLogs.push({
           type: "output",
           text: `Md Saikot Islam — Full Stack Web Developer & CSE Student at RUET.
-Passionate about building scalable MERN & Next.js applications, clean UI/UX engineering, algorithms, and cloud APIs.`,
+Passionate about building scalable MERN & Next.js 16 applications, clean UI/UX engineering, algorithms, and cloud APIs.`,
         });
         break;
 
@@ -117,10 +122,23 @@ Passionate about building scalable MERN & Next.js applications, clean UI/UX engi
         document.body.removeChild(link);
         break;
 
-      case "clear":
-        setHistory([]);
-        setInput("");
-        return;
+      case "sudo":
+        newLogs.push({
+          type: "error",
+          text: "Nice try! Permission denied 😎 (Root access is reserved for Saikot).",
+        });
+        break;
+
+      case "matrix":
+        newLogs.push({
+          type: "system",
+          text: `01001101 01100100 00100000 01010011 01100001 01101001 01101011 01101111 01100100
+[+] Entering the Matrix...
+Wake up, Neo... The matrix has you.
+Follow the white rabbit. 🐇
+System status: ONLINE | Node.js 16 | React 19 | RUET CSE`,
+        });
+        break;
 
       case "whoami":
         newLogs.push({
@@ -128,6 +146,11 @@ Passionate about building scalable MERN & Next.js applications, clean UI/UX engi
           text: `User: Tech Recruiter / Guest Visitor\nStatus: Authorized\nSession: Interactive Next.js 16 Terminal`,
         });
         break;
+
+      case "clear":
+        setHistory([]);
+        setInput("");
+        return;
 
       default:
         newLogs.push({
@@ -251,7 +274,7 @@ Passionate about building scalable MERN & Next.js applications, clean UI/UX engi
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  placeholder="type 'help', 'skills', or 'projects'..."
+                  placeholder="type 'help', 'skills', 'matrix', or 'sudo'..."
                   className="flex-1 bg-transparent text-white focus:outline-none placeholder-zinc-600 font-mono"
                 />
                 <button
