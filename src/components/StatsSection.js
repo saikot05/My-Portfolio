@@ -6,17 +6,28 @@ import { GitHubCalendar } from "react-github-calendar";
 import { Activity, GitCommit, Code2, Flame, ExternalLink, FolderGit2, Trophy } from "lucide-react";
 
 export default function StatsSection() {
+  // Real-time GitHub Stats State
   const [githubData, setGithubData] = useState({
     public_repos: 31,
-    followers: 2,
     loading: true,
   });
 
+  // Real-time Codeforces Stats State (Handle: saikot_05)
   const [codeforcesData, setCodeforcesData] = useState({
-    rating: 1252,
-    maxRating: 1293,
-    rank: "pupil",
-    handle: "Saikot",
+    handle: "saikot_05",
+    link: "https://codeforces.com/profile/saikot_05",
+    ratingStr: "Active Contestant",
+    rankStr: "Problem Solver",
+    loading: true,
+  });
+
+  // Real-time LeetCode Stats State (Handle: saikot_049)
+  const [leetcodeData, setLeetcodeData] = useState({
+    handle: "saikot_049",
+    link: "https://leetcode.com/u/saikot_049/",
+    solvedProblem: 32,
+    easySolved: 19,
+    mediumSolved: 13,
     loading: true,
   });
 
@@ -24,7 +35,7 @@ export default function StatsSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   useEffect(() => {
-    // Fetch GitHub REST API stats
+    // 1. Fetch live GitHub REST API stats
     async function fetchGithubStats() {
       try {
         const res = await fetch("https://api.github.com/users/saikot05");
@@ -32,39 +43,71 @@ export default function StatsSection() {
           const data = await res.json();
           setGithubData({
             public_repos: data.public_repos || 31,
-            followers: data.followers || 2,
             loading: false,
           });
         }
       } catch (err) {
-        console.error("Failed to fetch GitHub API stats:", err);
+        console.error("GitHub API Error:", err);
       }
     }
 
-    // Fetch Codeforces REST API user stats
+    // 2. Fetch live Codeforces API user info for saikot_05
     async function fetchCodeforcesStats() {
       try {
-        const res = await fetch("https://codeforces.com/api/user.info?handles=Saikot");
+        const res = await fetch("https://codeforces.com/api/user.info?handles=saikot_05");
         if (res.ok) {
           const data = await res.json();
           if (data.status === "OK" && data.result?.[0]) {
             const user = data.result[0];
             setCodeforcesData({
-              rating: user.rating || 1252,
-              maxRating: user.maxRating || 1293,
-              rank: user.rank || "pupil",
-              handle: user.handle || "Saikot",
+              handle: "saikot_05",
+              link: "https://codeforces.com/profile/saikot_05",
+              ratingStr: user.rating ? `Rating ${user.rating}` : "Active Contestant",
+              rankStr: user.rank ? user.rank.toUpperCase() : "Problem Solver",
+              loading: false,
+            });
+            return;
+          }
+        }
+      } catch (err) {
+        console.error("Codeforces API Error:", err);
+      }
+
+      // Default safe fallback if unrated/API error
+      setCodeforcesData({
+        handle: "saikot_05",
+        link: "https://codeforces.com/profile/saikot_05",
+        ratingStr: "Active Contestant",
+        rankStr: "Problem Solver",
+        loading: false,
+      });
+    }
+
+    // 3. Fetch live LeetCode solved statistics for saikot_049
+    async function fetchLeetcodeStats() {
+      try {
+        const res = await fetch("https://alfa-leetcode-api.onrender.com/saikot_049/solved");
+        if (res.ok) {
+          const data = await res.json();
+          if (data.solvedProblem !== undefined) {
+            setLeetcodeData({
+              handle: "saikot_049",
+              link: "https://leetcode.com/u/saikot_049/",
+              solvedProblem: data.solvedProblem,
+              easySolved: data.easySolved || 19,
+              mediumSolved: data.mediumSolved || 13,
               loading: false,
             });
           }
         }
       } catch (err) {
-        console.error("Failed to fetch Codeforces API stats:", err);
+        console.error("LeetCode API Error:", err);
       }
     }
 
     fetchGithubStats();
     fetchCodeforcesStats();
+    fetchLeetcodeStats();
   }, []);
 
   const metrics = [
@@ -78,18 +121,18 @@ export default function StatsSection() {
       borderColor: "border-violet-500/20",
     },
     {
-      id: "cp",
-      title: "500+ Solved",
-      subtitle: "Competitive Problems (Codeforces, CodeChef, LeetCode)",
+      id: "leetcode",
+      title: `${leetcodeData.solvedProblem} LeetCode Solved`,
+      subtitle: `${leetcodeData.easySolved} Easy, ${leetcodeData.mediumSolved} Medium Problems Solved`,
       icon: Flame,
-      color: "text-amber-500",
-      bgColor: "bg-amber-500/10",
-      borderColor: "border-amber-500/20",
+      color: "text-orange-500",
+      bgColor: "bg-orange-500/10",
+      borderColor: "border-orange-500/20",
     },
     {
       id: "codeforces",
-      title: `Rating ${codeforcesData.rating}`,
-      subtitle: `Codeforces ${codeforcesData.rank.toUpperCase()} (Max: ${codeforcesData.maxRating})`,
+      title: codeforcesData.ratingStr,
+      subtitle: `Codeforces @saikot_05 (${codeforcesData.rankStr})`,
       icon: Trophy,
       color: "text-blue-500",
       bgColor: "bg-blue-500/10",
@@ -109,9 +152,9 @@ export default function StatsSection() {
   const profiles = [
     {
       platform: "Codeforces",
-      handle: codeforcesData.handle,
-      rating: `${codeforcesData.rank.toUpperCase()} (Rating: ${codeforcesData.rating})`,
-      link: `https://codeforces.com/profile/${codeforcesData.handle}`,
+      handle: "saikot_05",
+      rating: codeforcesData.ratingStr,
+      link: "https://codeforces.com/profile/saikot_05",
       badgeColor: "bg-blue-500/10 text-blue-500 border-blue-500/20",
     },
     {
@@ -124,8 +167,8 @@ export default function StatsSection() {
     {
       platform: "LeetCode",
       handle: "saikot_049",
-      rating: "Algorithms & DS Solver",
-      link: "https://leetcode.com/u/saikot_049",
+      rating: `${leetcodeData.solvedProblem} Solved Problems`,
+      link: "https://leetcode.com/u/saikot_049/",
       badgeColor: "bg-orange-500/10 text-orange-500 border-orange-500/20",
     },
     {
@@ -158,11 +201,11 @@ export default function StatsSection() {
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-600 dark:text-violet-400 text-xs font-semibold uppercase tracking-widest mb-4">
             <Activity className="w-3.5 h-3.5" />
-            <span>Real-Time GitHub & Codeforces Live API Data</span>
+            <span>Real-Time GitHub, Codeforces & LeetCode APIs</span>
           </div>
           <h2 className="section-title">GitHub & Competitive Metrics</h2>
           <p className="section-subtitle">
-            Authentic commit activity matrix, real-time GitHub REST API repository stats, and live Codeforces user ratings.
+            Authentic commit activity matrix, real-time LeetCode solved counts, Codeforces profiles, and GitHub repository stats.
           </p>
         </motion.div>
 
