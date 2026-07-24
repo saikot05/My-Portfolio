@@ -179,27 +179,14 @@ export default function CommandPalette({ onOpenTerminal }) {
 
   return (
     <>
-      {/* Floating Hotkeys Help Pill (Bottom Left) */}
-      <div className="fixed bottom-6 left-6 z-40 hidden md:flex items-center gap-2.5 px-4 py-2 rounded-2xl bg-zinc-900/80 text-white border border-white/10 text-xs font-medium shadow-xl backdrop-blur-md pointer-events-none select-none">
-        <span className="flex items-center gap-1">
-          <kbd className="px-1.5 py-0.5 rounded bg-white/10 text-violet-300 font-mono text-[10px]">Ctrl+K</kbd>
-          <span className="text-zinc-400">Search</span>
-        </span>
-        <span className="text-zinc-600 font-bold">•</span>
-        <span className="flex items-center gap-1">
-          <kbd className="px-1.5 py-0.5 rounded bg-white/10 text-emerald-300 font-mono text-[10px]">&gt;_</kbd>
-          <span className="text-zinc-400">CLI Terminal</span>
-        </span>
-      </div>
-
-      {/* Navbar Keyboard Trigger Badge */}
+      {/* Navbar Keyboard Search Trigger Button (Bottom Right) */}
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-20 z-40 hidden sm:inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-black/60 dark:bg-zinc-800/80 text-white border border-white/10 text-xs font-semibold shadow-lg hover:border-violet-500/50 backdrop-blur-md transition-all cursor-pointer"
-        title="Open Command Palette (Ctrl + K)"
+        className="fixed bottom-6 right-20 z-40 hidden sm:inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-black/70 dark:bg-zinc-800/80 text-white border border-white/10 text-xs font-semibold shadow-xl hover:border-violet-500/50 hover:bg-black/90 backdrop-blur-md transition-all cursor-pointer"
+        title="Open Quick Search Palette (Ctrl + K)"
       >
         <Search className="w-3.5 h-3.5 text-violet-400" />
-        <span>Cmd</span>
+        <span>Search</span>
         <kbd className="px-1.5 py-0.5 rounded bg-white/20 text-[10px] font-mono">⌘K</kbd>
       </button>
 
